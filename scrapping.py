@@ -27,7 +27,10 @@ def all_syntaxes_(word):
     meaning_rows = []
 
     for i, tittle in enumerate(etymology_tittles):
-        etymology_tittles[i] = tittle.text.split('(', 1)[1].split(')')[0].split('.',1)[0]
+        if '(' not in tittle.text:
+            etymology_tittles[i] = 'null'
+        else:
+            etymology_tittles[i] = tittle.text.split('(', 1)[1].split(')')[0].split('.',1)[0]
         meaning_rows.append({'category' : etymology_tittles[i], 'meaning': etymology_meanings[i]})
 
     return meaning_rows

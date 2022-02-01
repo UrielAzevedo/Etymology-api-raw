@@ -39,4 +39,4 @@ api.add_resource(Verb_search, "/verb-search/<string:word>")
 api.add_resource(Adjective_search, "/adjective-search/<string:word>")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=8080)
