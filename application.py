@@ -1,21 +1,11 @@
 from flask import Flask
 from flask_restful import Api, Resource, reqparse
+from flask_cors import CORS
 import scrapping
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
-
-all_syntaxes_get_args = reqparse.RequestParser()
-all_syntaxes_get_args.add_argument("word", type=str, help="word to fetch")
-
-noun_search_get_args = reqparse.RequestParser()
-noun_search_get_args.add_argument("word", type=str, help="word to fetch")
-
-verb_search_get_args = reqparse.RequestParser()
-verb_search_get_args.add_argument("word", type=str, help="word to fetch")
-
-adjective_search_get_args = reqparse.RequestParser()
-adjective_search_get_args.add_argument("word", type=str, help="word to fetch")
 
 class All_syntaxes(Resource):
     def get(self, word):
@@ -39,4 +29,4 @@ api.add_resource(Verb_search, "/verb-search/<string:word>")
 api.add_resource(Adjective_search, "/adjective-search/<string:word>")
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+    app.run()
